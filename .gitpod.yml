@@ -1,4 +1,4 @@
 ports:
- - port: 8080
-   visibility: public
+  - port: 8080
+    visibility: public
 image: gitpod/workspace-mysql
