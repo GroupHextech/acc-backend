@@ -1,4 +1,4 @@
-package HexTech.Backend_lV_Fatec_Embraer.Entity;
+package HexTech.Backend_lV_Fatec_Embraer.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
