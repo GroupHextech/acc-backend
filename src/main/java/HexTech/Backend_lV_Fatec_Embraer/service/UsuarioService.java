@@ -1,5 +1,6 @@
 package HexTech.Backend_lV_Fatec_Embraer.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import HexTech.Backend_lV_Fatec_Embraer.repository.UsuarioRepository;
 
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService {
 
 @Autowired
 private UsuarioRepository usuarioRepo;
@@ -39,6 +40,17 @@ public Usuario novoUsuario(Usuario usuario){
 
 
 }
+
+
+public List<Usuario> buscarTodos() {
+    return usuarioRepo.findAll();
+}
+
+
+
+
+
+
 
     
 }
