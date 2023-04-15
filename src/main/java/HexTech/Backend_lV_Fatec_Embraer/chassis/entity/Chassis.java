@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name="CHASSIS")
+@Table(name="CHASSI")
 public class Chassis {
 	
 	@Id
