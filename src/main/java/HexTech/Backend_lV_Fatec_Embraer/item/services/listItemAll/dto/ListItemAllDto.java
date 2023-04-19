@@ -6,6 +6,7 @@ import lombok.Data;
 public class ListItemAllDto {
 
 		private String name_item;
+		private Long id_item;
 		
 }
 

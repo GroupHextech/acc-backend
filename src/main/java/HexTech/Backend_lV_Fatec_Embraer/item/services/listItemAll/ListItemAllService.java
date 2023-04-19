@@ -24,7 +24,7 @@ public class ListItemAllService  {
 		List<Item> listItem = itemRepository.findAll();
 		
 		if (listItem==null || listItem.isEmpty()) {
-			throw new Error("ChassiNotExist");
+			throw new Error("ItemNotExist");
 		}
 		
 		List<ListItemAllDto> listItemAllDto = new ArrayList<ListItemAllDto>();
@@ -32,6 +32,7 @@ public class ListItemAllService  {
 		for (Item item: listItem) {
 			ListItemAllDto listItensAllDto = new ListItemAllDto();
 			listItensAllDto.setName_item(item.getItemName());
+			listItensAllDto.setId_item(item.getItemId());
 			listItemAllDto.add(listItensAllDto);
 		}
 			
