@@ -66,6 +66,22 @@ public class RegisterBulletinService {
 			ServiceBulletin serviceBulletin = serviceBulletinRepository
 					.findByServiceBulletinNameAndServiceBulletinPart(serviceInfo.getBulletin(), serviceInfo.getPart());
 			
+			if(serviceBulletin == null) {
+				ServiceBulletin newServiceBulletin = new ServiceBulletin();
+				newServiceBulletin.setServiceBulletinName(serviceInfo.getBulletin());
+				newServiceBulletin.setServiceBulletinPart(serviceInfo.getPart());
+				ServiceBulletin serviceBulletinRegistered = serviceBulletinRepository.saveAndFlush(newServiceBulletin);
+				
+				Chassis chassiExist = new Chassis();
+				chassiExist.setChassiId(serviceDTO.getChassis());
+				
+				ChassiServiceBulletin chassiServiceBulletin = new ChassiServiceBulletin();
+				chassiServiceBulletin.setChassiId(chassiExist);
+				chassiServiceBulletin.setServiceBulletinId(serviceBulletinRegistered);
+				chassiServiceBulletin.setServiceBulletinStatus(serviceDTO.getStatus());
+				service.add(chassiServiceBulletin);
+			}else {
+			
 			Chassis chassiExist = new Chassis();
 			chassiExist.setChassiId(serviceDTO.getChassis());
 			
@@ -74,7 +90,7 @@ public class RegisterBulletinService {
 			chassiServiceBulletin.setServiceBulletinId(serviceBulletin);
 			chassiServiceBulletin.setServiceBulletinStatus(serviceDTO.getStatus());
 			service.add(chassiServiceBulletin);
-			
+			}
 		}
 		chassiServiceBulletinRepository.saveAllAndFlush(service);
 
