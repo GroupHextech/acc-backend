@@ -72,6 +72,7 @@ public class RegisterBulletinService {
 				newServiceBulletin.setServiceBulletinPart(serviceInfo.getPart());
 				ServiceBulletin serviceBulletinRegistered = serviceBulletinRepository.saveAndFlush(newServiceBulletin);
 				
+				
 				Chassis chassiExist = new Chassis();
 				chassiExist.setChassiId(serviceDTO.getChassis());
 				
