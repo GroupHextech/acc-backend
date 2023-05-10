@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class VictorBurrroBurrroBurroDTO {
+public class ServiceBulletinChassiDTO {
 
 	private List<ServiceBulletinUpdateDTO> serviceBulletinUpdateDto;
 	private Long chassi_id;

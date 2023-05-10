@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.updateServiceBulletin.dto.VictorBurrroBurrroBurroDTO;
+import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.updateServiceBulletin.dto.ServiceBulletinChassiDTO;
 
 @RestController
 @RequestMapping(value = "/update/bulletin")
@@ -19,8 +19,8 @@ public class UpdateBulletinController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Void> updateBulletinService(@RequestBody  VictorBurrroBurrroBurroDTO teste){
-		updateBulletinService.execute(teste.getServiceBulletinUpdateDto(), teste.getChassi_id());
+	public ResponseEntity<Void> updateBulletinService(@RequestBody  ServiceBulletinChassiDTO serviceBulletinChassiDto){
+		updateBulletinService.execute(serviceBulletinChassiDto.getServiceBulletinUpdateDto(), serviceBulletinChassiDto.getChassi_id());
 		return new ResponseEntity<Void>(HttpStatus.OK);
 		
 	}
