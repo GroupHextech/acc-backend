@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
@@ -16,7 +17,8 @@ import HexTech.Backend_lV_Fatec_Embraer.chassis.repositories.ChassisRepository;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.entity.ChassiServiceBulletin;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.repository.ChassiServiceBulletinRepository;
 
-@RestController("/chart")
+@RestController
+@RequestMapping(value = "/chart")
 public class SBbyStatusChartController {
 
 	private final ChassiServiceBulletinRepository chassiSbRepository;

@@ -20,7 +20,7 @@ public class ChassiContainItem {
 
 		List<Long> chassiIdContain = new ArrayList<>();
 
-		if (name.equals("vidrosetravas")) {
+		if (name.equals("vidrosetravaseletricas")) {
 
 			for (Long chassiId : chassiIds) {
 				Chassis chassi = new Chassis();
@@ -208,7 +208,7 @@ public class ChassiContainItem {
 
 		}
 		
-		else if (name.equals("funcaoeconomic")) {
+		else if (name.equals("funcaoeconomicsport")) {
 
 			for (Long chassiId : chassiIds) {
 				Chassis chassi = new Chassis();
