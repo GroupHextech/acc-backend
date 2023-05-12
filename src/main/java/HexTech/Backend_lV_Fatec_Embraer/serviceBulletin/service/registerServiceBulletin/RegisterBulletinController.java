@@ -17,12 +17,12 @@ import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.registerServiceB
 
 @RestController
 @RequestMapping(value = "/register/bulletin")
+@CrossOrigin
 public class RegisterBulletinController {
 	
 	@Autowired
 	RegisterBulletinService bulletinService;
 	
-	@CrossOrigin
 	@PostMapping
  	public ResponseEntity<Void> registerBulletinService(@RequestBody List<ServiceBulletinRegisterDTO> serviceBulletinRegisterDTO){
 

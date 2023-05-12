@@ -2,6 +2,8 @@ package HexTech.Backend_lV_Fatec_Embraer.user.entity;
 
 
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,8 +22,8 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name="USER")
-public class User {
+@Table(name="USUARIOS")
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

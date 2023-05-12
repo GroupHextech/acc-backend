@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
@@ -21,6 +22,7 @@ public class ContainsItems {
 	@Autowired
 	ChassiServiceBulletinRepository chassiServiceBulletinRepository;
 
+	@PreAuthorize("hasRole('ADM')")
 	public ListItemsResponseDTO items(Integer id) {
 
 		Chassis chassis = new Chassis();
