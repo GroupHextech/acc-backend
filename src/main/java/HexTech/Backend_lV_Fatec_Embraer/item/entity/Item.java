@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,7 @@ import lombok.Setter;
 public class Item {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ITEM_ID")
 	private Long itemId;
 	
@@ -30,6 +31,7 @@ public class Item {
 	private String itemName;
 	
 	@Column(name="ITEM_DTREGISTER")
+	@UpdateTimestamp
 	private Timestamp itemDtregister;
 	
 }

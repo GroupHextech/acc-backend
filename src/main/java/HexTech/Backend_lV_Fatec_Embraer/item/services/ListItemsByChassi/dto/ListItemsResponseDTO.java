@@ -10,9 +10,7 @@ import lombok.Data;
 public class ListItemsResponseDTO {
 	
 	List<ListIncorporated> incorporated;
-	
-	List<ListNotApplicable> not_applicable;
-	
+		
 	List<ListApplicable> applicable;
 	
 	

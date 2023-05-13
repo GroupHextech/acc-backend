@@ -22,7 +22,7 @@ public class ListItemsByChassiController {
 	
 	@CrossOrigin
 	@GetMapping
-	public ResponseEntity<ListItemsResponseDTO> listItemsByChassy(@PathVariable("chassi") Integer chassi) {
+	public ResponseEntity<ListItemsResponseDTO> listItemsByChassy(@PathVariable("chassi") Long chassi) {
 		
 		ListItemsResponseDTO listItems = itemsByChassiService.execute(chassi);
 		
