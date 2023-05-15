@@ -16,21 +16,21 @@ public class ListChassisByItemService {
 
 	@Autowired
 	ChassisRepository chassisRepository;
-	
+
 	@Autowired
 	ChassiContainItem chassiContainItem;
 
-	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")	
+	@PreAuthorize("hasRole('PILOT')")
 	public List<Long> execute(String itemName) {
 		List<Chassis> chassis = chassisRepository.findAll();
-		
+
 		List<Long> chassisIds = new ArrayList<>();
-		
+
 		for (Chassis chassiId : chassis) {
 			chassisIds.add(chassiId.getChassiId());
 		}
 		List<Long> idContain = chassiContainItem.containItem(chassisIds, itemName);
-		
+
 		return idContain;
 
 	}
