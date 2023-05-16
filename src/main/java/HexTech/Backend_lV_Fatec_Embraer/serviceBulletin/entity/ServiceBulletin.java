@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
-import HexTech.Backend_lV_Fatec_Embraer.user.entity.User;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,6 +45,6 @@ public class ServiceBulletin {
 	
 	@JoinColumn(name="USER_ID_REGISTER")
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User userRegister;
+	private Users userRegister;
 	
 }

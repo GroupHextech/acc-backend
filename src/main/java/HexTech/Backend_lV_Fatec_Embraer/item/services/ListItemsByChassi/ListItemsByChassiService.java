@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage.ItemsBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
@@ -28,6 +29,7 @@ public class ListItemsByChassiService {
 	@Autowired
 	VerifyItems verifyItems;
 
+	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")
 	public ListItemsResponseDTO execute(Long chassiId) {
 
 		Chassis chassis = new Chassis();
@@ -76,3 +78,4 @@ public class ListItemsByChassiService {
 		return listItemsResponseDTOs;
 	}
 }
+

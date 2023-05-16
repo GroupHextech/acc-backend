@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
@@ -25,6 +26,7 @@ public class UpdateBulletinService {
 	@Autowired
 	private ChassiServiceBulletinRepository chassiServiceBulletinRepository;
 
+	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public void execute(List<ServiceBulletinUpdateDTO> serviceBulletinUpdateDTO, Long chassi_id) {
 		
 		if (serviceBulletinUpdateDTO==null || serviceBulletinUpdateDTO.isEmpty() || chassi_id == null) {

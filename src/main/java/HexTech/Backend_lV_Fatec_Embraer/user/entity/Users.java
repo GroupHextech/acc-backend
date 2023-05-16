@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import HexTech.Backend_lV_Fatec_Embraer.permission.entity.Permission;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +22,8 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name="USER")
-public class User {
+@Table(name="USUARIOS")
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +42,7 @@ public class User {
 	
 	@JoinColumn(name="PERMISSION_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Permission permissionId;
 	
 }

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import HexTech.Backend_lV_Fatec_Embraer.item.entity.Item;
-import HexTech.Backend_lV_Fatec_Embraer.user.entity.User;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +29,7 @@ public class UserItem {
 	
 	@JoinColumn(name="USER_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User userId;
+	private Users userId;
 	
 	@JoinColumn(name="ITEM_ID")
 	@ManyToOne(fetch = FetchType.LAZY)

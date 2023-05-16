@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.entity.ServiceBulletin;
@@ -18,6 +19,7 @@ public class ListServiceBulletinsAllService {
 	@Autowired
 	ServiceBulletinRepository serviceBulletinRepository;
 	
+	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public List<ListServiceBulletinAllDto> execute() {
 		
 		List<ServiceBulletin> listServiceBulletin = serviceBulletinRepository.findAll();

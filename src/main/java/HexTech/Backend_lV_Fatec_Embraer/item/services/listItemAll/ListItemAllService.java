@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.item.entity.Item;
@@ -18,6 +19,7 @@ public class ListItemAllService  {
 	@Autowired
 	ItemRepository itemRepository;
 	
+	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public List<ListItemAllDto> execute() {
 		
 		

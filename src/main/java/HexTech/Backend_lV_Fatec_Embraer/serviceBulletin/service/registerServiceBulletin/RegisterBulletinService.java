@@ -7,6 +7,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
@@ -18,7 +19,7 @@ import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.repositories.ServiceBull
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.registerServiceBulletin.dto.ServiceBulletinRegisterDTO;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.registerServiceBulletin.dto.VerifyDTO;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.registerServiceBulletin.util.VerifyPart;
-import HexTech.Backend_lV_Fatec_Embraer.user.entity.User;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 @Service
 @Transactional
@@ -36,6 +37,7 @@ public class RegisterBulletinService {
 	@Autowired
 	private VerifyPart verifyPart;
 
+	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public void execute(List<ServiceBulletinRegisterDTO> serviceBulletinRegisterDTO) {
 
 		List<ChassiServiceBulletin> service = new ArrayList<>();
@@ -46,7 +48,7 @@ public class RegisterBulletinService {
 
 			if (exist == null) {
 				
-				User user = new User();
+				Users user = new Users();
 				user.setUserId(2L);
 
 				char status = 'A';
@@ -63,8 +65,11 @@ public class RegisterBulletinService {
 
 			VerifyDTO serviceInfo = verifyPart.verifyPart(serviceDTO.getBulletin_service());
 
+			System.out.println(serviceInfo.getBulletin());
+			System.out.println(serviceInfo.getPart());
 			ServiceBulletin serviceBulletin = serviceBulletinRepository
 					.findByServiceBulletinNameAndServiceBulletinPart(serviceInfo.getBulletin(), serviceInfo.getPart());
+			
 			
 			if(serviceBulletin == null) {
 				ServiceBulletin newServiceBulletin = new ServiceBulletin();
@@ -72,7 +77,7 @@ public class RegisterBulletinService {
 				newServiceBulletin.setServiceBulletinPart(serviceInfo.getPart());
 				ServiceBulletin serviceBulletinRegistered = serviceBulletinRepository.saveAndFlush(newServiceBulletin);
 				
-				
+
 				Chassis chassiExist = new Chassis();
 				chassiExist.setChassiId(serviceDTO.getChassis());
 				
