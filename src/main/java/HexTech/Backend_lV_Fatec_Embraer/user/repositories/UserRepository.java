@@ -10,6 +10,6 @@ import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long>{
-	Optional<Users> findByUserUsername(String username);
+	Users findByUserUsername(String username);
 
 }

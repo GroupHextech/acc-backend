@@ -22,7 +22,6 @@ public class ListChassisService  {
 	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public List<ListChassisDto> execute() {
 		
-		
 		List<Chassis> listChassis = chassisRepository.findAll();
 		
 		if (listChassis==null || listChassis.isEmpty()) {

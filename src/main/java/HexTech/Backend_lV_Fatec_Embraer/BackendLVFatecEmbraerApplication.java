@@ -18,10 +18,4 @@ public class BackendLVFatecEmbraerApplication {
 		SpringApplication.run(BackendLVFatecEmbraerApplication.class, args);
 	}
 	
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder;
-	}
-
 }

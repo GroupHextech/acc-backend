@@ -21,5 +21,4 @@ public class ListItemsByChassiService {
 
 		return items;
 	}
-
 }

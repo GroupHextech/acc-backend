@@ -2,8 +2,6 @@ package HexTech.Backend_lV_Fatec_Embraer.user.entity;
 
 
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import HexTech.Backend_lV_Fatec_Embraer.permission.entity.Permission;
 import lombok.Getter;
@@ -42,6 +42,7 @@ public class Users {
 	
 	@JoinColumn(name="PERMISSION_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Permission permissionId;
 	
 }

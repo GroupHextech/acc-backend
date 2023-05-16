@@ -20,7 +20,7 @@ public class ListChassisByItemService {
 	@Autowired
 	ChassiContainItem chassiContainItem;
 
-	@PreAuthorize("hasRole('PILOT')")
+	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")
 	public List<Long> execute(String itemName) {
 		List<Chassis> chassis = chassisRepository.findAll();
 

@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.NotFound;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Getter;
@@ -23,7 +22,7 @@ import lombok.Setter;
 public class Permission {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="PERMISSION_ID")
 	private Long permissionId;
 	
