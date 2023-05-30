@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.repositories.ChassisRepository;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.service.listChassis.dto.ListChassisDto;
+import HexTech.Backend_lV_Fatec_Embraer.chassisUser.entity.ChassisUser;
+import HexTech.Backend_lV_Fatec_Embraer.chassisUser.repositories.chassisUserRepository;
+import HexTech.Backend_lV_Fatec_Embraer.securityconfig.UserSession;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 
 @Service
@@ -19,10 +23,18 @@ public class ListChassisService  {
 	@Autowired
 	ChassisRepository chassisRepository;
 	
-	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")	
+	@Autowired
+	UserSession session;
+	
+	@Autowired
+	chassisUserRepository chassisUserRepository;
+	
+	@PreAuthorize("hasRole('ADM')")	
 	public List<ListChassisDto> execute() {
 		
-		List<Chassis> listChassis = chassisRepository.findAll();
+		Users userLoged = session.userLoged();
+		
+		List<ChassisUser> listChassis = chassisUserRepository.findByUserId(userLoged);
 		
 		if (listChassis==null || listChassis.isEmpty()) {
 			throw new Error("ChassiNotExist");
@@ -30,9 +42,9 @@ public class ListChassisService  {
 		
 		List<ListChassisDto> listChassiDto = new ArrayList<ListChassisDto>();
 		
-		for (Chassis chassi: listChassis) {
+		for (ChassisUser chassi: listChassis) {
 			ListChassisDto listChassisDto = new ListChassisDto();
-			listChassisDto.setChassi_id(chassi.getChassiId());
+			listChassisDto.setChassi_id(chassi.getChassiId().getChassiId());
 			listChassiDto.add(listChassisDto);
 		}
 			

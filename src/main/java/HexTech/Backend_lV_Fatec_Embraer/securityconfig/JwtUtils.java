@@ -2,6 +2,8 @@ package HexTech.Backend_lV_Fatec_Embraer.securityconfig;
 
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,17 +11,22 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.login.Login;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.IOException;
 import io.jsonwebtoken.security.Keys;
 
+@Service
 public class JwtUtils {
 
     private static final String KEY = "br.gov.sp.fatec.springbootexample";
 
+    
+    
     public static String generateToken(Authentication usuario) throws JsonProcessingException {
       ObjectMapper mapper = new ObjectMapper();
       Login usuarioSemSenha = new Login();
