@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.entity.ChassiServiceBulletin;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.repository.ChassiServiceBulletinRepository;
+import HexTech.Backend_lV_Fatec_Embraer.chassisUser.entity.ChassisUser;
+import HexTech.Backend_lV_Fatec_Embraer.chassisUser.repositories.chassisUserRepository;
+import HexTech.Backend_lV_Fatec_Embraer.securityconfig.UserSession;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.entity.ServiceBulletin;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.repositories.ServiceBulletinRepository;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.updateServiceBulletin.dto.ServiceBulletinUpdateDTO;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 @Service
 @Transactional
@@ -26,16 +30,29 @@ public class UpdateBulletinService {
 	@Autowired
 	private ChassiServiceBulletinRepository chassiServiceBulletinRepository;
 
-	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")	
+	@Autowired
+	private UserSession userSession;
+
+	@Autowired
+	private chassisUserRepository chassisuserRepository;
+
+	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")
 	public void execute(List<ServiceBulletinUpdateDTO> serviceBulletinUpdateDTO, Long chassi_id) {
-		
-		if (serviceBulletinUpdateDTO==null || serviceBulletinUpdateDTO.isEmpty() || chassi_id == null) {
+
+		if (serviceBulletinUpdateDTO == null || serviceBulletinUpdateDTO.isEmpty() || chassi_id == null) {
 			throw new Error("ParametersNull");
 		}
 		Chassis chassiUpdate = new Chassis();
 		chassiUpdate.setChassiId(chassi_id);
-		ArrayList<ChassiServiceBulletin> listChassiServiceBulletin = new ArrayList<>();
+
+		Users user = userSession.userLoged();
+		ChassisUser chassisUsers = chassisuserRepository.findByUserIdAndChassiId(user,chassiUpdate);
+		if(chassisUsers == null) {
+			throw new Error("UserWithoutPermission");
+		}
 		
+		ArrayList<ChassiServiceBulletin> listChassiServiceBulletin = new ArrayList<>();
+
 		for (ServiceBulletinUpdateDTO listServiceBulletin : serviceBulletinUpdateDTO) {
 			if (listServiceBulletin.getBulletin_service_name() == null || listServiceBulletin.getPart() == null) {
 				throw new Error("ServiceBulletinNameorPartNull");
@@ -45,7 +62,8 @@ public class UpdateBulletinService {
 			if (serviceBulletin == null) {
 				throw new Error("ServiceBulletinNull");
 			}
-			ChassiServiceBulletin chassiServiceBulletin = chassiServiceBulletinRepository.findByChassiIdAndServiceBulletinId(chassiUpdate, serviceBulletin);
+			ChassiServiceBulletin chassiServiceBulletin = chassiServiceBulletinRepository
+					.findByChassiIdAndServiceBulletinId(chassiUpdate, serviceBulletin);
 			if (listServiceBulletin.getStatus() == null) {
 				throw new Error("ServiceBulletinStatusNull");
 			}
