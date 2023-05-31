@@ -4,24 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.repositories.ChassisRepository;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.entity.ChassiServiceBulletin;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.repository.ChassiServiceBulletinRepository;
+import HexTech.Backend_lV_Fatec_Embraer.chassisUser.repositories.chassisUserRepository;
 import HexTech.Backend_lV_Fatec_Embraer.formula.entity.Formula;
 import HexTech.Backend_lV_Fatec_Embraer.formula.repositories.FormulaRepository;
 import HexTech.Backend_lV_Fatec_Embraer.item.repositories.ItemRepository;
-import HexTech.Backend_lV_Fatec_Embraer.item.services.ListItemsByChassi.dto.ListApplicable;
 import HexTech.Backend_lV_Fatec_Embraer.item.services.ListItemsByChassi.dto.ListIncorporated;
-import HexTech.Backend_lV_Fatec_Embraer.item.services.ListItemsByChassi.dto.ListItemsResponseDTO;
 import HexTech.Backend_lV_Fatec_Embraer.item.services.ListItemsByChassi.util.VerifyItems;
 import HexTech.Backend_lV_Fatec_Embraer.item.services.contagemItens.dto.ContagemItensByChassiDto;
+import HexTech.Backend_lV_Fatec_Embraer.securityconfig.UserSession;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 @Service
 public class ContagemItensByChassiService {
 
+	@Autowired
+	chassisUserRepository chassisUserRepository;
 	@Autowired
 	ItemRepository itemRepository;
 	@Autowired
@@ -32,10 +36,13 @@ public class ContagemItensByChassiService {
 	FormulaRepository formulaRepository;
 	@Autowired
 	VerifyItems verifyItems;
-
+	@Autowired
+	UserSession userSession;
+	
+	@PreAuthorize("hasRole('ADM')")	
 	public List<ContagemItensByChassiDto> execute() {
-
 		List<Chassis> listChassis = chassiRepository.findAll();
+		
 		List<ListIncorporated> incorporated = new ArrayList<>();
 		List<Formula> formulas = formulaRepository.findAll();
 
