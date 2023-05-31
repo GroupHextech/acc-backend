@@ -22,7 +22,6 @@ public class ListItemAllService  {
 	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public List<ListItemAllDto> execute() {
 		
-		
 		List<Item> listItem = itemRepository.findAll();
 		
 		if (listItem==null || listItem.isEmpty()) {

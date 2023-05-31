@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.listServiceBulletins.dto.ListServiceBulletinsResponse;
 
 @RestController
-@RequestMapping(value="/bulletins/listar/{id}")
+@RequestMapping(value="bulletin/listar/{id}")
 public class ListServiceBulletinsController {
 	
 	@Autowired

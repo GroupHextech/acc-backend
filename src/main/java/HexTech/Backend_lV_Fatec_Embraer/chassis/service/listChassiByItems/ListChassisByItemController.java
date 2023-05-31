@@ -27,7 +27,7 @@ public class ListChassisByItemController {
 	
 	@CrossOrigin
 	@GetMapping
-	public ResponseEntity<List<Long>> listChassisByItem(@PathVariable("item") String item, @RequestHeader("token") String token){
+	public ResponseEntity<List<Long>> listChassisByItem(@PathVariable("item") String item){
 		
 
 		List<Long> chassisIds = byItemService.execute(item);

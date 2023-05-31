@@ -29,7 +29,7 @@ public class ListChassisService  {
 	@Autowired
 	chassisUserRepository chassisUserRepository;
 	
-	@PreAuthorize("hasRole('ADM')")	
+	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")
 	public List<ListChassisDto> execute() {
 		
 		Users userLoged = session.userLoged();
