@@ -10,9 +10,9 @@ import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassisSb.entity.ChassiServiceBulletin;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.entity.ServiceBulletin;
 
-@Repository
 public interface ChassiServiceBulletinRepository  extends JpaRepository<ChassiServiceBulletin, Long>{
 
 	List<ChassiServiceBulletin> findByChassiId(Chassis chassi);
 	ChassiServiceBulletin findByChassiIdAndServiceBulletinId(Chassis chassis, ServiceBulletin serviceBulletin);
+	List<ChassiServiceBulletin> findByServiceBulletinId(ServiceBulletin sb);
 }
