@@ -53,7 +53,7 @@ public class ContadorChassisBySbService {
 
 		for (ChassiServiceBulletin chassiId : chassi) {
 			ChassisBySbDto chassisBySbDto = new ChassisBySbDto();
-			chassisBySbDto.setChassi(chassiId.getSbChassiId());
+			chassisBySbDto.setChassi(chassiId.getChassiId().getChassiId());
 			chassisList.add(chassisBySbDto);
 		}
 		Integer countChassis = chassisList.size();
