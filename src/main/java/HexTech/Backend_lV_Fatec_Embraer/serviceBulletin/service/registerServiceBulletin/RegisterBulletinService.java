@@ -76,6 +76,7 @@ public class RegisterBulletinService {
 				ServiceBulletin newServiceBulletin = new ServiceBulletin();
 				newServiceBulletin.setServiceBulletinName(serviceInfo.getBulletin());
 				newServiceBulletin.setServiceBulletinPart(serviceInfo.getPart());
+				newServiceBulletin.setUserRegister(userLoged);
 				ServiceBulletin serviceBulletinRegistered = serviceBulletinRepository.saveAndFlush(newServiceBulletin);
 				
 

@@ -17,5 +17,7 @@ public class ListServiceBulletinsResponse {
 	@NotNull
 	private String part;
 	
+	private String user;
+	
 }
 

@@ -14,5 +14,7 @@ public class ListServiceBulletinAllDto {
 	
 	@NotNull
 	private String service_bulletin_part;
+	
+	private String user;
 
 }

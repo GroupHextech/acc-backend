@@ -30,6 +30,7 @@ public class ListServiceBulletinsAllService {
 			ListServiceBulletinAllDto listServiceBulletinAllDto = new ListServiceBulletinAllDto();
 			listServiceBulletinAllDto.setService_bulletin_name(bulletin.getServiceBulletinName());
 			listServiceBulletinAllDto.setService_bulletin_part(bulletin.getServiceBulletinPart());
+			listServiceBulletinAllDto.setUser(bulletin.getUserRegister().getUserUsername());
 			listServiceBulletinsAllDto.add(listServiceBulletinAllDto);
 		}
 		

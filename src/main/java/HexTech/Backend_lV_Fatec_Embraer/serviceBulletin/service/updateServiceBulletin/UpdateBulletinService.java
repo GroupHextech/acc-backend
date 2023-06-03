@@ -43,7 +43,6 @@ public class UpdateBulletinService {
 			throw new Error("ParametersNull");
 		}
 		
-		
 		Chassis chassiUpdate = new Chassis();
 		chassiUpdate.setChassiId(chassi_id);
 
