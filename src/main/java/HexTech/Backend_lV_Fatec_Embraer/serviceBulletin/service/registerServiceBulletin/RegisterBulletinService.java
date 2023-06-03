@@ -37,10 +37,15 @@ public class RegisterBulletinService {
 
 	@Autowired
 	private VerifyPart verifyPart;
+	
+	@Autowired
+	private UserSession userSession;
 
 	@PreAuthorize("hasRole('EDITOR')" + "|| hasRole('ADM')")	
 	public void execute(List<ServiceBulletinRegisterDTO> serviceBulletinRegisterDTO) {
 
+		Users userLoged = userSession.userLoged();
+		
 		List<ChassiServiceBulletin> service = new ArrayList<>();
 
 		for (ServiceBulletinRegisterDTO serviceDTO : serviceBulletinRegisterDTO) {
@@ -48,9 +53,6 @@ public class RegisterBulletinService {
 			Chassis exist = chassisRepository.findById(serviceDTO.getChassis()).orElse(null);
 
 			if (exist == null) {
-				
-				Users user = new Users();
-				user.setUserId(2L);
 
 				char status = 'A';
 				
@@ -58,7 +60,7 @@ public class RegisterBulletinService {
 				
 				chassis.setChassiId(serviceDTO.getChassis());
 				chassis.setChassiStatus(status);
-				chassis.setUserRegister(user);
+				chassis.setUserRegister(userLoged);
 				
 				chassisRepository.saveAndFlush(chassis);
 				
@@ -66,8 +68,6 @@ public class RegisterBulletinService {
 
 			VerifyDTO serviceInfo = verifyPart.verifyPart(serviceDTO.getBulletin_service());
 
-			System.out.println(serviceInfo.getBulletin());
-			System.out.println(serviceInfo.getPart());
 			ServiceBulletin serviceBulletin = serviceBulletinRepository
 					.findByServiceBulletinNameAndServiceBulletinPart(serviceInfo.getBulletin(), serviceInfo.getPart());
 			
@@ -86,6 +86,7 @@ public class RegisterBulletinService {
 				chassiServiceBulletin.setChassiId(chassiExist);
 				chassiServiceBulletin.setServiceBulletinId(serviceBulletinRegistered);
 				chassiServiceBulletin.setServiceBulletinStatus(serviceDTO.getStatus());
+				chassiServiceBulletin.setUser(userLoged);
 				service.add(chassiServiceBulletin);
 			}else {
 			
@@ -96,6 +97,7 @@ public class RegisterBulletinService {
 			chassiServiceBulletin.setChassiId(chassiExist);
 			chassiServiceBulletin.setServiceBulletinId(serviceBulletin);
 			chassiServiceBulletin.setServiceBulletinStatus(serviceDTO.getStatus());
+			chassiServiceBulletin.setUser(userLoged);
 			service.add(chassiServiceBulletin);
 			}
 		}

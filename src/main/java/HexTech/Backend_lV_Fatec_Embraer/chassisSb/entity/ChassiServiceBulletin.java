@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.entity.ServiceBulletin;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,6 +44,10 @@ public class ChassiServiceBulletin {
 	@JoinColumn(name="CHASSI_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Chassis chassiId;
+	
+	@JoinColumn(name = "USER_REGISTER")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Users user;
 	
 
 }

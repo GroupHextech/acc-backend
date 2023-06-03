@@ -42,6 +42,8 @@ public class UpdateBulletinService {
 		if (serviceBulletinUpdateDTO == null || serviceBulletinUpdateDTO.isEmpty() || chassi_id == null) {
 			throw new Error("ParametersNull");
 		}
+		
+		
 		Chassis chassiUpdate = new Chassis();
 		chassiUpdate.setChassiId(chassi_id);
 
@@ -68,6 +70,7 @@ public class UpdateBulletinService {
 				throw new Error("ServiceBulletinStatusNull");
 			}
 			chassiServiceBulletin.setServiceBulletinStatus(listServiceBulletin.getStatus());
+			chassiServiceBulletin.setUser(user);
 			listChassiServiceBulletin.add(chassiServiceBulletin);
 		}
 		chassiServiceBulletinRepository.saveAllAndFlush(listChassiServiceBulletin);

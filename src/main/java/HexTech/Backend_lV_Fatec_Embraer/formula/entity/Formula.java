@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import HexTech.Backend_lV_Fatec_Embraer.item.entity.Item;
+import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,5 +33,9 @@ public class Formula {
 	@JoinColumn(name="ITEM_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Item itemId;
+	
+	@JoinColumn(name = "USER_REGISTER")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Users user;
 	
 }
