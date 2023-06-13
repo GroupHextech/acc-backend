@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.repositories.ChassisRepository;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.service.listChassiByItems.util.ChassiContainItem;
 import HexTech.Backend_lV_Fatec_Embraer.chassisUser.entity.ChassisUser;

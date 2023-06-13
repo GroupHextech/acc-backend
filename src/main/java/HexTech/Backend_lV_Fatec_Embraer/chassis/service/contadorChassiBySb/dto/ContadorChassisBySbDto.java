@@ -15,6 +15,8 @@ public class ContadorChassisBySbDto {
 
 	List<ChassisBySbDto> chassis;
 	
+	private Integer total_chassi;
+	
 	private Integer count_chassi;
 	
 	private String serviceBulletin;

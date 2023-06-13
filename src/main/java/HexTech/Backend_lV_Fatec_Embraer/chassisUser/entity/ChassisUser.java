@@ -23,7 +23,7 @@ import lombok.Setter;
 @Table(name = "CHASSI_USER")
 public class ChassisUser {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CHASSI_USER_ID")
 	private Long chassiUserId;
 

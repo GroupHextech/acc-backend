@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
+import HexTech.Backend_lV_Fatec_Embraer.chassis.entity.Chassis;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.repositories.ChassisRepository;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.service.contadorChassiBySb.dto.ContadorChassisBySbDto;
 import HexTech.Backend_lV_Fatec_Embraer.chassis.service.listChassiByItems.util.ChassiContainItem;
@@ -20,7 +21,7 @@ import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.repositories.ServiceBull
 
 @Service
 public class ContadorChassisBySbService {
-
+	
 	@Autowired
 	ChassisRepository chassisRepository;
 	
@@ -42,6 +43,8 @@ public class ContadorChassisBySbService {
 	@PreAuthorize("hasRole('ADM')")
 	public ContadorChassisBySbDto execute(String sbName, String part) {
 		
+		List<Chassis> allChassis = chassisRepository.findAll();
+		
 		ContadorChassisBySbDto contadorChassisBySbDto = new ContadorChassisBySbDto();
 						
 		ServiceBulletin serviceBulletin = new ServiceBulletin();
@@ -57,6 +60,7 @@ public class ContadorChassisBySbService {
 			chassisList.add(chassisBySbDto);
 		}
 		Integer countChassis = chassisList.size();
+		contadorChassisBySbDto.setTotal_chassi(allChassis.size());
 		contadorChassisBySbDto.setChassis(chassisList);
 		contadorChassisBySbDto.setCount_chassi(countChassis);
 		contadorChassisBySbDto.setServiceBulletin(sbName);
