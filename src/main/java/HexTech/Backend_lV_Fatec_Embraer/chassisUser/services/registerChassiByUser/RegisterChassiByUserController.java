@@ -1,5 +1,7 @@
 package HexTech.Backend_lV_Fatec_Embraer.chassisUser.services.registerChassiByUser;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +23,9 @@ public class RegisterChassiByUserController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Void> handle(@RequestBody RegisterDTO registerDTO){
+	public ResponseEntity<Void> handle(@RequestBody ArrayList<RegisterDTO> registerDTO){
 		
-		registerChassiByUserService.exec(registerDTO.getChassi_id(), registerDTO.getUser_id());
+		registerChassiByUserService.exec(registerDTO);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}

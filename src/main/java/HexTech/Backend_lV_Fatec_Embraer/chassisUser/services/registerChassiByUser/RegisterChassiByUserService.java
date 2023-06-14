@@ -1,5 +1,7 @@
 package HexTech.Backend_lV_Fatec_Embraer.chassisUser.services.registerChassiByUser;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -16,20 +18,21 @@ public class RegisterChassiByUserService {
 	chassisUserRepository chassisUserRepository;
 	
 	@PreAuthorize("hasRole('ADM')")	
-	public void exec(Long chassiId, Long userId) {
+	public void exec(ArrayList<RegisterDTO> listregisterDTO) {
+		for(RegisterDTO registerDTO: listregisterDTO) {
 		Chassis chassis = new Chassis();
-		chassis.setChassiId(chassiId);
+		chassis.setChassiId(registerDTO.getChassi_id());
 		
 		Users users = new Users();
-		users.setUserId(userId);
+		users.setUserId(registerDTO.getUser_id());
 		
 		ChassisUser chassisUser = new ChassisUser();
 		chassisUser.setChassiId(chassis);
 		chassisUser.setUserId(users);
 		
-		System.out.println("1");
 		chassisUserRepository.save(chassisUser);
-		System.out.println("2");
+		
+		}
 	}
 
 }
