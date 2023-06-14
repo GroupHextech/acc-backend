@@ -14,7 +14,6 @@ import HexTech.Backend_lV_Fatec_Embraer.chassis.service.listChassis.dto.ListChas
 import HexTech.Backend_lV_Fatec_Embraer.chassisUser.entity.ChassisUser;
 import HexTech.Backend_lV_Fatec_Embraer.chassisUser.repositories.chassisUserRepository;
 import HexTech.Backend_lV_Fatec_Embraer.securityconfig.UserSession;
-import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 
 @Service
@@ -32,19 +31,13 @@ public class ListChassisService  {
 	@PreAuthorize("hasRole('PILOT')" + "|| hasRole('EDITOR')" + "|| hasRole('ADM')")
 	public List<ListChassisDto> execute() {
 		
-		Users userLoged = session.userLoged();
-		
-		List<ChassisUser> listChassis = chassisUserRepository.findByUserId(userLoged);
-		
-		if (listChassis==null || listChassis.isEmpty()) {
-			throw new Error("ChassiNotExist");
-		}
+		List<Chassis> chassis = chassisRepository.findAll();
 		
 		List<ListChassisDto> listChassiDto = new ArrayList<ListChassisDto>();
 		
-		for (ChassisUser chassi: listChassis) {
+		for (Chassis chassi: chassis) {
 			ListChassisDto listChassisDto = new ListChassisDto();
-			listChassisDto.setChassi_id(chassi.getChassiId().getChassiId());
+			listChassisDto.setChassi_id(chassi.getChassiId());
 			listChassiDto.add(listChassisDto);
 		}
 			

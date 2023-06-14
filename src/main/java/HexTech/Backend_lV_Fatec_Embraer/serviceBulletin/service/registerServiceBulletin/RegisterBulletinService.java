@@ -23,7 +23,6 @@ import HexTech.Backend_lV_Fatec_Embraer.serviceBulletin.service.registerServiceB
 import HexTech.Backend_lV_Fatec_Embraer.user.entity.Users;
 
 @Service
-@Transactional
 public class RegisterBulletinService {
 
 	@Autowired
